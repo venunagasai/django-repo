@@ -20,6 +20,7 @@ users = [
     ('johndoe', 'password123'),
     ('venu', 'venu123'),
     ('vikram', 'vikram123'),
+    ('venu naga sai','Venu@1234'),
     ('vivek', 'vivek123'),
 ]
 
