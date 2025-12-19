@@ -8,7 +8,7 @@ jwt = JWTManager(app)
 
 users = {
     'admin': {
-        'password': generate_password_hash('admin123'),
+        'password': generate_password_hash('venu123'),
         'role': 'admin'
     }
 }
@@ -29,6 +29,11 @@ def login():
         return jsonify({'access_token': access_token}), 200
 
     return jsonify({'error': 'Invalid credentials'}), 401
+
+
+@app.route('/', methods=['GET'])
+def root():
+    return jsonify({'message': 'Welcome to the JWT API'})
 
 
 if __name__ == '__main__':
