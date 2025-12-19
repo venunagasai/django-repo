@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Profile</title>
+</head>
+
+<body>
+    <h2>User Profile</h2>
+    <div id="profileData">
+        Loading...
+    </div>
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        async function loadProfile() {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                window.location.href = '/app/login/';
+                return;
+            }
+
+            try {
+                const response = await fetch('/app/api/profile-data/', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('profileData').innerHTML =
+                        `<p>Username: ${data.username}</p>` +
+                        `<p>Email: ${data.email}</p>` +
+                        `<p>Message: ${data.message}</p>`;
+                } else {
+                    // Try refreshing token, or just redirect for now
+                    logout();
+                }
+            } catch (err) {
+                console.error(err);
+                logout();
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            window.location.href = '/app/login/';
+        }
+
+        loadProfile();
+    </script>
+</body>
+
+</html>

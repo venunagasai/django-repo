@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="greeting-section">
+    <h1>{{ greeting }}</h1>
+    <h2>{{ wish }}</h2>
+    <p>Current System Time: {{ time }}</p>
+    <div class="role-tag">{{ tag }}</div>
+
+    <div style="margin-top: 50px;">
+        <p>Welcome to the Corporate Dashboard.</p>
+    </div>
+</div>
+{% endblock %}
